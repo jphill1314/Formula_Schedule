@@ -35,10 +35,10 @@ public class SessionWeatherAdapter extends ArrayAdapter<SessionWeather> {
         TextView tvDate = (TextView) convertView.findViewById(R.id.session_date);
         tvDate.setText(session.date);
 
-        TextView tvTemp = (TextView) convertView.findViewById(R.id.temp);
+        //TextView tvTemp = (TextView) convertView.findViewById(R.id.temp);
         //tvTemp.setText("" + session.temp);
 
-        TextView tvPrecip = (TextView) convertView.findViewById(R.id.precip_chance);
+        //TextView tvPrecip = (TextView) convertView.findViewById(R.id.precip_chance);
         //tvPrecip.setText("" + session.rain);
 
         TextView tvStart = (TextView) convertView.findViewById(R.id.start_time);
