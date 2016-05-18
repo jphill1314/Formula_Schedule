@@ -13,5 +13,5 @@ Features (Ideas)
 Extra Ideas
 *Notifications for starts of events
 *get events from web / not hardcoded
-*show weather
+*show weather -> could add a link to a weather prediction thing
 *track map / pictures
