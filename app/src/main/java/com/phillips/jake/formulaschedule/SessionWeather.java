@@ -12,6 +12,8 @@ public class SessionWeather {
     String country, sessionType, weatherType, date;
     int sessionStartTime;
     double temp, rain;
+    int beginDaylightSave = 1459036800;
+    int endDaylightSave = 1477785600;
 
     public SessionWeather(String country, int sessionStartTime, String sessionType){
         this.country = country;
@@ -23,7 +25,9 @@ public class SessionWeather {
 
     private void setDate(){
         Calendar cal = Calendar.getInstance();
+
         cal.setTimeInMillis(sessionStartTime * 1000L);
+
         String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
         date = monthNames[cal.get(Calendar.MONTH)] + " " + cal.get(Calendar.DAY_OF_MONTH);
