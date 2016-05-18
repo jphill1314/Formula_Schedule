@@ -9,9 +9,14 @@ Features (Ideas)
 *top list time is next/current race
 *bigger box, shows start time of race
 
+*basic functionality is in
+*need to make it look good
+	*track map?
+	*country's flag?
+	*pictures from the track?
+	*show weather -> could add a link to a weather prediction thing
 
 Extra Ideas
 *Notifications for starts of events
 *get events from web / not hardcoded
-*show weather -> could add a link to a weather prediction thing
-*track map / pictures
+
