@@ -8,6 +8,8 @@ Features (Ideas)
 
 *top list time is next/current race
 *bigger box, shows start time of race
+	*instead of times show countdown to next session?
+	*if session in progress show time left? (is it predictable)
 
 *basic functionality is in
 *need to make it look good
