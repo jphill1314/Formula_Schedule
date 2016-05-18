@@ -48,25 +48,28 @@ public class MainActivityFragment extends Fragment {
         details = scheduleDataSource.getAllComments();
 
         if(details.size() == 0){
-            scheduleDataSource.createDatabaseItem("Australia", 1426213800, 1426228200, 1426305600, 1426316400, 1426399200);
-            scheduleDataSource.createDatabaseItem("Maylasia", 1427421600, 1427436000, 1427522400, 1427533200, 1427612400);
-            scheduleDataSource.createDatabaseItem("China", 1428631200, 1428645600, 1428724800, 1428735600, 1428818400);
-            scheduleDataSource.createDatabaseItem("Bahrain", 1429268400, 1429282800, 1429358400, 1429369200, 1429455600);
-            scheduleDataSource.createDatabaseItem("Spain", 1431072000, 1431086400, 1431162000, 1431172800, 1431259200);
-            scheduleDataSource.createDatabaseItem("Monaco", 1432195200, 1432209600, 1432371600, 1432382400, 1432468800);
-            scheduleDataSource.createDatabaseItem("Canada", 1433512800, 1433527200, 1433599200, 1433610000, 1433700000);
-            scheduleDataSource.createDatabaseItem("Austria", 1434700800, 1434715200, 1434790800, 1434801600, 1434888000);
-            scheduleDataSource.createDatabaseItem("England", 1435914000, 1435928400, 1436000400, 1436011200, 1436097600);
-            scheduleDataSource.createDatabaseItem("Hungary", 1437724800, 1437739200, 1437814800, 1437825600, 1437912000);
-            scheduleDataSource.createDatabaseItem("Belgium", 1440144000, 1440158400, 1440234000, 1440244800, 1440331200);
-            scheduleDataSource.createDatabaseItem("Italy", 1441353600, 1441368000, 1441443600, 1441454400, 1441540800);
-            scheduleDataSource.createDatabaseItem("Singapore", 1442570400, 1442583000, 1442656800, 1442667600, 1442750400);
-            scheduleDataSource.createDatabaseItem("Japan", 1443142800, 1443157200, 1443236400, 1443247200, 1443330000);
-            scheduleDataSource.createDatabaseItem("Russia", 1444374000, 1444388400, 1444467600, 1444478400, 1444561200);
-            scheduleDataSource.createDatabaseItem("United States", 1445612400, 1445626800, 1445698800, 1445709600, 1445799600);
-            scheduleDataSource.createDatabaseItem("Mexico", 1446217200, 1446231600, 1446303600, 1446314400, 1446400800);
-            scheduleDataSource.createDatabaseItem("Brazil", 1447419600, 1447434000, 1447509600, 1447520400, 1447606800);
-            scheduleDataSource.createDatabaseItem("Abu Dhabi", 1448614800, 1448625600, 1448704800, 1448712000, 1448798401);
+            // All times are converted from UK time
+            scheduleDataSource.createDatabaseItem("Australia", 1458264600, 1458279000, 1458356400, 1458367200, 1458450000);
+            scheduleDataSource.createDatabaseItem("Bahrain", 1459512000, 1459526400, 1459602000, 1459612800, 1459699200);
+            scheduleDataSource.createDatabaseItem("China", 1460689200, 1460703600, 1460782800, 1460793600, 1460876400);
+            scheduleDataSource.createDatabaseItem("Russia", 1461916800, 1461931200, 1462010400, 1462021200, 1462107600);
+            scheduleDataSource.createDatabaseItem("Spain", 1463130000, 1463144400, 1463220000, 1463230800, 1463230800);
+            scheduleDataSource.createDatabaseItem("Monaco", 1464253200, 1464267600, 1464429600, 1464440400, 1464526800);
+            scheduleDataSource.createDatabaseItem("Canada", 1465570800, 1465585200, 1465657200, 1465668000, 1465758000);
+            scheduleDataSource.createDatabaseItem("Europe", 1466157600, 1466172000, 1466247600, 1466258400, 1466344800);
+            scheduleDataSource.createDatabaseItem("Austria", 1467363600, 1467378000, 1467453600, 1467464400, 1467550800);
+            scheduleDataSource.createDatabaseItem("England", 1467972000, 1467986400, 1468058400, 1468069200, 1468155600);
+            scheduleDataSource.createDatabaseItem("Hungary", 1469178000, 1469192400, 1469268000, 1469278800, 1469365200);
+            scheduleDataSource.createDatabaseItem("Germany", 1469782800, 1469797200, 1469872800, 1469883600, 1469970000);
+            scheduleDataSource.createDatabaseItem("Belgian", 1472202000, 1472216400, 1472292000, 1472302800, 1472389200);
+            scheduleDataSource.createDatabaseItem("Italy", 1472806800, 1472821200, 1472896800, 1472907600, 1472994000);
+            scheduleDataSource.createDatabaseItem("Singapore", 1474023600, 1474036200, 1474110000, 1474120800, 1474203600);
+            scheduleDataSource.createDatabaseItem("Malaysia", 1475204400, 1475218800, 1475305200, 1475316000, 1475395200);
+            scheduleDataSource.createDatabaseItem("Japan", 1475805600, 1475820000, 1475899200, 1475910000, 1475992800);
+            scheduleDataSource.createDatabaseItem("United States", 1477065600, 1477080000, 1477152000, 1477162800, 1477252800);
+            scheduleDataSource.createDatabaseItem("Mexico", 1477670400, 1477684800, 1477756800, 1477767600, 1477854000);
+            scheduleDataSource.createDatabaseItem("Brazil", 1478865600, 1478880000, 1478955600, 1478966400, 1479052800);
+            scheduleDataSource.createDatabaseItem("Abu Dhabi", 1480064400, 1480078800, 1480154400, 1480165200, 1480251600);
         }
 
         scheduleAdapter = new ListViewDetailsAdapter(getActivity(), details);
