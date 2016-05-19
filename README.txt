@@ -18,6 +18,9 @@ Features (Ideas)
 	*pictures from the track?
 	*show weather -> could add a link to a weather prediction thing
 
+Current Issues
+*Flag icons aren't all the same size
+
 Extra Ideas
 *Notifications for starts of events
 *get events from web / not hardcoded

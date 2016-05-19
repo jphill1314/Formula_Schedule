@@ -10,10 +10,11 @@
     <ImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:paddingLeft="5dp"
         android:id="@+id/country_flag"/>
 
     <TextView
-        android:paddingLeft="16dp"
+        android:paddingLeft="5dp"
         android:paddingRight="16dp"
         android:id="@+id/country_name"
         android:layout_width="0dp"
