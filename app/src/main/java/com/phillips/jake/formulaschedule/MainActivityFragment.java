@@ -3,6 +3,7 @@ package com.phillips.jake.formulaschedule;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class MainActivityFragment extends Fragment {
     ListViewDetailsAdapter scheduleAdapter;
     ScheduleDataSource scheduleDataSource;
     ArrayList<ListViewDetails> details;
+    long timeToNextRace = 0;
 
 
     public MainActivityFragment() {
@@ -104,7 +106,28 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
+
         populateTopView(rootView);
+
+        final TextView timeleft = (TextView) rootView.findViewById(R.id.fp1_time);
+        new CountDownTimer(timeToNextRace, 1000){
+            public void onTick(long millSecondsLeft){
+                int days = (int) (millSecondsLeft / (1000 * 3600 * 24));
+                millSecondsLeft -= days * 24 * 3600 * 1000;
+                int hours = (int) (millSecondsLeft / (1000 * 3600));
+                millSecondsLeft -= hours * 3600 * 1000;
+                int minutes = (int) (millSecondsLeft / (1000 * 60));
+                millSecondsLeft -= minutes * 60 * 1000;
+                int seconds = (int) (millSecondsLeft / (1000));
+                millSecondsLeft -= seconds * 1000;
+
+                timeleft.setText("Time Left: " + days + " days " + hours + ":" + minutes + ":" + seconds);
+            }
+
+            public void onFinish(){
+
+            }
+        }.start();
 
         return rootView;
     }
@@ -134,6 +157,8 @@ public class MainActivityFragment extends Fragment {
 
                 TextView fp3Time = (TextView) view.findViewById(R.id.fp3_time);
                 fp3Time.setText(format.format(item.fp3 * 1000L));
+
+                timeToNextRace = race.getTimeInMillis() - current.getTimeInMillis();
 
                 return;
             }
