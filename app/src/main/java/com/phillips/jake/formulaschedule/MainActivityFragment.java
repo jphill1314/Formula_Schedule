@@ -53,7 +53,7 @@ public class MainActivityFragment extends Fragment {
             scheduleDataSource.createDatabaseItem("Bahrain", 1459512000, 1459526400, 1459602000, 1459612800, 1459699200);
             scheduleDataSource.createDatabaseItem("China", 1460689200, 1460703600, 1460782800, 1460793600, 1460876400);
             scheduleDataSource.createDatabaseItem("Russia", 1461916800, 1461931200, 1462010400, 1462021200, 1462107600);
-            scheduleDataSource.createDatabaseItem("Spain", 1463130000, 1463144400, 1463220000, 1463230800, 1463230800);
+            scheduleDataSource.createDatabaseItem("Spain", 1463130000, 1463144400, 1463220000, 1463230800, 1463317200);
             scheduleDataSource.createDatabaseItem("Monaco", 1464253200, 1464267600, 1464429600, 1464440400, 1464526800);
             scheduleDataSource.createDatabaseItem("Canada", 1465570800, 1465585200, 1465657200, 1465668000, 1465758000);
             scheduleDataSource.createDatabaseItem("Europe", 1466157600, 1466172000, 1466247600, 1466258400, 1466344800);
@@ -70,6 +70,7 @@ public class MainActivityFragment extends Fragment {
             scheduleDataSource.createDatabaseItem("Mexico", 1477670400, 1477684800, 1477756800, 1477767600, 1477854000);
             scheduleDataSource.createDatabaseItem("Brazil", 1478865600, 1478880000, 1478955600, 1478966400, 1479052800);
             scheduleDataSource.createDatabaseItem("Abu Dhabi", 1480064400, 1480078800, 1480154400, 1480165200, 1480251600);
+            details = scheduleDataSource.getAllComments();
         }
 
         scheduleAdapter = new ListViewDetailsAdapter(getActivity(), details);
