@@ -63,7 +63,7 @@ public class MainActivityFragment extends Fragment {
             scheduleDataSource.createDatabaseItem("England", 1467972000, 1467986400, 1468058400, 1468069200, 1468155600);
             scheduleDataSource.createDatabaseItem("Hungary", 1469178000, 1469192400, 1469268000, 1469278800, 1469365200);
             scheduleDataSource.createDatabaseItem("Germany", 1469782800, 1469797200, 1469872800, 1469883600, 1469970000);
-            scheduleDataSource.createDatabaseItem("Belgian", 1472202000, 1472216400, 1472292000, 1472302800, 1472389200);
+            scheduleDataSource.createDatabaseItem("Belgium", 1472202000, 1472216400, 1472292000, 1472302800, 1472389200);
             scheduleDataSource.createDatabaseItem("Italy", 1472806800, 1472821200, 1472896800, 1472907600, 1472994000);
             scheduleDataSource.createDatabaseItem("Singapore", 1474023600, 1474036200, 1474110000, 1474120800, 1474203600);
             scheduleDataSource.createDatabaseItem("Malaysia", 1475204400, 1475218800, 1475305200, 1475316000, 1475395200);
