@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FormulaSchedule.iml" filepath="$PROJECT_DIR$/FormulaSchedule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Formula_Schedule.iml" filepath="$PROJECT_DIR$/.idea/Formula_Schedule.iml" />
     </modules>
   </component>
 </project>
-

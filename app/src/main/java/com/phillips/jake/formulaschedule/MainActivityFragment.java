@@ -109,7 +109,10 @@ public class MainActivityFragment extends Fragment {
 
         populateTopView(rootView);
 
-        final TextView timeleft = (TextView) rootView.findViewById(R.id.fp1_time);
+        final TextView tvDays = (TextView) rootView.findViewById(R.id.num_days_to_next_session);
+        final TextView tvHours = (TextView) rootView.findViewById(R.id.num_hours_to_next_session);
+        final TextView tvMins = (TextView) rootView.findViewById(R.id.num_min_to_next_session);
+        final TextView tvSecs = (TextView) rootView.findViewById(R.id.num_seconds_to_next_session);
         new CountDownTimer(timeToNextRace, 1000){
             public void onTick(long millSecondsLeft){
                 int days = (int) (millSecondsLeft / (1000 * 3600 * 24));
@@ -119,9 +122,11 @@ public class MainActivityFragment extends Fragment {
                 int minutes = (int) (millSecondsLeft / (1000 * 60));
                 millSecondsLeft -= minutes * 60 * 1000;
                 int seconds = (int) (millSecondsLeft / (1000));
-                millSecondsLeft -= seconds * 1000;
 
-                timeleft.setText("Time Left: " + days + " days " + hours + ":" + minutes + ":" + seconds);
+                tvDays.setText(days + "");
+                tvHours.setText(hours + "");
+                tvMins.setText(minutes + "");
+                tvSecs.setText(seconds + "");
             }
 
             public void onFinish(){
@@ -139,27 +144,36 @@ public class MainActivityFragment extends Fragment {
         for(ListViewDetails item : details){
             race.setTimeInMillis(item.race * 1000L);
             if(current.compareTo(race) < 0){
-                TextView country = (TextView) view.findViewById(R.id.race_country);
+                TextView country = (TextView) view.findViewById(R.id.next_race_country);
                 country.setText(item.country);
 
-                DateFormat format = new SimpleDateFormat("h:mm a");
-                TextView raceTime = (TextView) view.findViewById(R.id.race_time);
-                raceTime.setText(format.format(item.race * 1000L));
+                TextView session = (TextView) view.findViewById(R.id.next_session_name);
 
-                TextView qualyTime = (TextView) view.findViewById(R.id.qualy_time);
-                qualyTime.setText(format.format(item.qualy * 1000L));
-
-                TextView fp1Time = (TextView) view.findViewById(R.id.fp1_time);
-                fp1Time.setText(format.format(item.fp1 * 1000L));
-
-                TextView fp2Time = (TextView) view.findViewById(R.id.fp2_time);
-                fp2Time.setText(format.format(item.fp2 * 1000L));
-
-                TextView fp3Time = (TextView) view.findViewById(R.id.fp3_time);
-                fp3Time.setText(format.format(item.fp3 * 1000L));
-
-                timeToNextRace = race.getTimeInMillis() - current.getTimeInMillis();
-
+                switch (item.nextSession()){
+                    case 1:
+                        session.setText("FP1");
+                        timeToNextRace = (item.fp1 * 1000L) - current.getTimeInMillis();
+                        break;
+                    case 2:
+                        session.setText("FP2");
+                        timeToNextRace = (item.fp2 * 1000L) - current.getTimeInMillis();
+                        break;
+                    case 3:
+                        session.setText("FP3");
+                        timeToNextRace = (item.fp3 * 1000L) - current.getTimeInMillis();
+                        break;
+                    case 4:
+                        session.setText("Qualifying");
+                        timeToNextRace = (item.qualy * 1000L) - current.getTimeInMillis();
+                        break;
+                    case 5:
+                        session.setText("Race");
+                        timeToNextRace = (item.race * 1000L) - current.getTimeInMillis();
+                        break;
+                    default:
+                        timeToNextRace = 0;
+                        session.setText("No Upcoming sessions");
+                }
                 return;
             }
         }

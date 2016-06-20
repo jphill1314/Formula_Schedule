@@ -29,7 +29,7 @@ public class ListViewDetails {
     private void setDates(){
         String[] monthNames = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         String startMonth, endMonth, startDay, endDay;
-        Calendar local = new GregorianCalendar(TimeZone.getTimeZone("America/New_York"));
+        Calendar local = new GregorianCalendar(TimeZone.getDefault());
         local.setTimeInMillis(fp1 * 1000L);
 
         startMonth = monthNames[local.get(Calendar.MONTH)];
@@ -46,6 +46,48 @@ public class ListViewDetails {
         else{
             dates = startMonth + " " + startDay + " - " + endMonth + " " + endDay;
         }
+    }
+
+
+    /*
+    * returns a number based on which session is next to occur
+    * 1 = fp1
+    * 2 = fp2
+    * 3 = fp3
+    * 4 = qualy
+    * 5 = race
+    * 0 = all sessions have occured
+    * */
+    public int nextSession(){
+        Calendar current = Calendar.getInstance();
+        Calendar test = Calendar.getInstance();
+
+        test.setTimeInMillis(fp1 * 1000L);
+        if(current.compareTo(test) < 0){
+            return 1;
+        }
+
+        test.setTimeInMillis(fp2 * 1000L);
+        if(current.compareTo(test) < 0){
+            return 2;
+        }
+
+        test.setTimeInMillis(fp3 * 1000L);
+        if(current.compareTo(test) < 0){
+            return 3;
+        }
+
+        test.setTimeInMillis(qualy * 1000L);
+        if(current.compareTo(test) < 0){
+            return 4;
+        }
+
+        test.setTimeInMillis(race * 1000L);
+        if(current.compareTo(test) < 0){
+            return 5;
+        }
+
+        return 0;
     }
 }
 
