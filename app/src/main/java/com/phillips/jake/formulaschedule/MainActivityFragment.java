@@ -1,11 +1,9 @@
 package com.phillips.jake.formulaschedule;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +14,9 @@ import android.widget.TextView;
 import com.phillips.jake.formulaschedule.Data.ScheduleDataSource;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment {
 
     ListViewDetailsAdapter scheduleAdapter;
@@ -45,7 +37,8 @@ public class MainActivityFragment extends Fragment {
         try {
             scheduleDataSource.open();
         }
-        catch (SQLException e){}
+        catch (SQLException e){
+        }
 
         details = scheduleDataSource.getAllComments();
 
