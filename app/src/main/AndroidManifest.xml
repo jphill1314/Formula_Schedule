@@ -24,6 +24,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.phillips.jake.formulaschedule.MainActivity" />
         </activity>
+        
+        <provider
+            android:authorities="com.phillips.jake.formulaschedule.app"
+            android:name=".Data.ScheduleProvider"/>
     </application>
 
 </manifest>
