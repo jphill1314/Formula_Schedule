@@ -117,9 +117,9 @@ public class SeasonScheduleFragment extends Fragment implements LoaderManager.Lo
     private void createSchedule(){
         ContentValues[] scheduleValues = new ContentValues[21];
         String[] county = new String[]{
-                "Austrialia", "Bahrain", "China",
+                "Australia", "Bahrain", "China",
                 "Russia", "Spain", "Monaco", "Canada",
-                "Europe", "Austia", "England", "Hungary",
+                "Europe", "Austria", "England", "Hungary",
                 "Germany", "Belgium", "Italy", "Singapore",
                 "Malaysia", "Japan", "United States",
                 "Mexico", "Brazil", "Abu Dhabi"
