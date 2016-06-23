@@ -6,4 +6,27 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="australia">Australia</string>
+    <string name="bahrain">Bahrain</string>
+    <string name="china">China</string>
+    <string name="russia">Russia</string>
+    <string name="spain">Spain</string>
+    <string name="monaco">Monaco</string>
+    <string name="canada">Canada</string>
+    <string name="europe">Europe</string>
+    <string name="austria">Austria</string>
+    <string name="britian">Britian</string>
+    <string name="hungary">Hungary</string>
+    <string name="germany">Germany</string>
+    <string name="belgium">Belgium</string>
+    <string name="italy">Italy</string>
+    <string name="singapore">Singapore</string>
+    <string name="malaysia">Malaysia</string>
+    <string name="japan">Japan</string>
+    <string name="usa">United States</string>
+    <string name="mexico">Mexico</string>
+    <string name="brazil">Brazil</string>
+    <string name="uae">Abu Dhabi</string>
+
 </resources>
