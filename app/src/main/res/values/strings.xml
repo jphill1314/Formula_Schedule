@@ -29,4 +29,8 @@
     <string name="brazil">Brazil</string>
     <string name="uae">Abu Dhabi</string>
 
+    <string name="race">Race</string>
+    <string name="free_prac">Free Practice</string>
+    <string name="qualy">Qualifying</string>
+
 </resources>

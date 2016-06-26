@@ -14,11 +14,29 @@
         android:text="Country"/>
 
 
-    <ListView
-        android:id="@+id/listview_race_info"
+    <TextView
+        android:id="@+id/race_textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-    </ListView>
+    <TextView
+        android:id="@+id/qualy_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fp3_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fp2_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/fp1_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

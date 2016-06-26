@@ -2,10 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    tools:context="com.phillips.jake.formulaschedule.MainActivityFragment">
+    android:orientation="vertical">
 
-<!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +21,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="50sp"
                     android:paddingLeft="20dp"
-                    android:text="Country Name"
                     android:id="@+id/next_race_country"/>
 
                 <TextView
@@ -31,7 +28,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="50sp"
                     android:paddingRight="20dp"
-                    android:text="Next Session"
                     android:id="@+id/next_session_name"/>
 
             </LinearLayout>
@@ -132,7 +128,7 @@
             </LinearLayout>
 
         </LinearLayout>
--->
+
         <ListView
             android:id="@+id/listview_schedule"
             android:layout_width="fill_parent"
