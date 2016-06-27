@@ -118,7 +118,7 @@ public class SeasonScheduleFragment extends Fragment implements LoaderManager.Lo
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor){
         mScheduleAdapter.swapCursor(cursor);
-        populateTopView(cursor);
+        //populateTopView(cursor);
     }
 
     @Override

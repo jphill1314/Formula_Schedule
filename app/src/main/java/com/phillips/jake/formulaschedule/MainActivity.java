@@ -14,6 +14,20 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(findViewById(R.id.top_frame_view) != null){
+            if(savedInstanceState != null){
+                return;
+            }
+
+            CountdownFragment cdFrag = new CountdownFragment();
+            SeasonScheduleFragment ssFrag = new SeasonScheduleFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.top_frame_view, cdFrag)
+                    .add(R.id.bottom_frame_view, ssFrag)
+                    .commit();
+        }
     }
 
 
