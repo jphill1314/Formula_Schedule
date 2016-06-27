@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,7 +55,7 @@ public class SeasonScheduleFragment extends Fragment implements LoaderManager.Lo
     private String nextRaceCountry;
     private String nextSession;
 
-    private View rootView;
+   // private View rootView;
 
     public SeasonScheduleFragment(){}
 
@@ -70,29 +72,38 @@ public class SeasonScheduleFragment extends Fragment implements LoaderManager.Lo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        mScheduleAdapter = new SeasonScheduleAdapter(getActivity(), null, 0);
+        mScheduleAdapter = new SeasonScheduleAdapter(getActivity(), null);
 
-        rootView = inflater.inflate(R.layout.fragment_main_schedule, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(
+                R.layout.recycler_view, container, false
+        );
 
-        ListView listView = (ListView) rootView.findViewById(R.id.listview_schedule);
-        listView.setAdapter(mScheduleAdapter);
+        recyclerView.setAdapter(mScheduleAdapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return recyclerView;
 
-        //createSchedule();
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView adapterView, View view, int position, long l){
-                Cursor c = (Cursor) adapterView.getItemAtPosition(position);
-                if(c != null){
-                    Intent intent = new Intent(getActivity(), MoreInfoActivity.class)
-                            .setData(ScheduleContract.ScheduleEntry
-                                    .buildCountryScheduleUri(c.getString(COL_COUNTRY)));
-                    startActivity(intent);
-                }
-            }
-        });
-
-        return  rootView;
+//        rootView = inflater.inflate(R.layout.fragment_main_schedule, container, false);
+//
+//        ListView listView = (ListView) rootView.findViewById(R.id.listview_schedule);
+//        listView.setAdapter(mScheduleAdapter);
+//
+//        //createSchedule();
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView adapterView, View view, int position, long l){
+//                Cursor c = (Cursor) adapterView.getItemAtPosition(position);
+//                if(c != null){
+//                    Intent intent = new Intent(getActivity(), MoreInfoActivity.class)
+//                            .setData(ScheduleContract.ScheduleEntry
+//                                    .buildCountryScheduleUri(c.getString(COL_COUNTRY)));
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//
+//        return  rootView;
     }
 
     @Override
@@ -117,99 +128,99 @@ public class SeasonScheduleFragment extends Fragment implements LoaderManager.Lo
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor){
-        mScheduleAdapter.swapCursor(cursor);
+        mScheduleAdapter.mCursorAdapter.swapCursor(cursor);
         //populateTopView(cursor);
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader){
-        mScheduleAdapter.swapCursor(null);
+       mScheduleAdapter.mCursorAdapter.swapCursor(null);
     }
 
-    private void populateTopView(Cursor cursor){
-        findNextSession(cursor);
-
-        TextView tvCountry = (TextView) rootView.findViewById(R.id.next_race_country);
-        TextView tvSession = (TextView) rootView.findViewById(R.id.next_session_name);
-
-        final TextView tvHours = (TextView) rootView.findViewById(R.id.num_hours_to_next_session);
-        final TextView tvMins = (TextView) rootView.findViewById(R.id.num_min_to_next_session);
-        final TextView tvSecs = (TextView) rootView.findViewById(R.id.num_seconds_to_next_session);
-        final TextView tvDays = (TextView) rootView.findViewById(R.id.num_days_to_next_session);
-
-        tvCountry.setText(nextRaceCountry);
-        tvSession.setText(nextSession);
-
-        new CountDownTimer(timeToNextRace, 1000){
-            public void onTick(long millSecondsLeft){
-                int days = (int) (millSecondsLeft / (1000 * 3600 * 24));
-                millSecondsLeft -= days * 24 * 3600 * 1000;
-                int hours = (int) (millSecondsLeft / (1000 * 3600));
-                millSecondsLeft -= hours * 3600 * 1000;
-                int minutes = (int) (millSecondsLeft / (1000 * 60));
-                millSecondsLeft -= minutes * 60 * 1000;
-                int seconds = (int) (millSecondsLeft / (1000));
-
-                tvDays.setText(days + "");
-                tvHours.setText(hours + "");
-                tvMins.setText(minutes + "");
-                tvSecs.setText(seconds + "");
-            }
-
-            public void onFinish(){
-
-            }
-        }.start();
-    }
-
-    private void findNextSession(Cursor details){
-        Calendar current = Calendar.getInstance();
-        Calendar race = Calendar.getInstance();
-
-        details.moveToFirst();
-
-        do{
-            race.setTimeInMillis(details.getInt(COL_RACE) * 1000L);
-            if(current.compareTo(race) < 0){
-                nextRaceCountry = details.getString(COL_COUNTRY);
-
-                race.setTimeInMillis(details.getInt(COL_FP1) * 1000L);
-                if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-                    nextSession = "FP1";
-                    return;
-                }
-
-                race.setTimeInMillis(details.getInt(COL_FP2) * 1000L);
-                if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-                    nextSession = "FP2";
-                    return;
-                }
-
-                race.setTimeInMillis(details.getInt(COL_FP3) * 1000L);
-                if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-                    nextSession = "FP3";
-                    return;
-                }
-
-                race.setTimeInMillis(details.getInt(COL_QUALY) * 1000L);
-                if(current.compareTo(race) < 0){
-                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
-                    nextSession = "Qualifying";
-                    return;
-                }
-
-                race.setTimeInMillis(details.getInt(COL_RACE) * 1000L);
-                timeToNextRace = (int) (race.getTimeInMillis() - current.getTimeInMillis());
-                nextSession = "Race";
-                return;
-            }
-
-
-        }while(details.moveToNext());
-    }
+//    private void populateTopView(Cursor cursor){
+//        findNextSession(cursor);
+//
+//        TextView tvCountry = (TextView) rootView.findViewById(R.id.next_race_country);
+//        TextView tvSession = (TextView) rootView.findViewById(R.id.next_session_name);
+//
+//        final TextView tvHours = (TextView) rootView.findViewById(R.id.num_hours_to_next_session);
+//        final TextView tvMins = (TextView) rootView.findViewById(R.id.num_min_to_next_session);
+//        final TextView tvSecs = (TextView) rootView.findViewById(R.id.num_seconds_to_next_session);
+//        final TextView tvDays = (TextView) rootView.findViewById(R.id.num_days_to_next_session);
+//
+//        tvCountry.setText(nextRaceCountry);
+//        tvSession.setText(nextSession);
+//
+//        new CountDownTimer(timeToNextRace, 1000){
+//            public void onTick(long millSecondsLeft){
+//                int days = (int) (millSecondsLeft / (1000 * 3600 * 24));
+//                millSecondsLeft -= days * 24 * 3600 * 1000;
+//                int hours = (int) (millSecondsLeft / (1000 * 3600));
+//                millSecondsLeft -= hours * 3600 * 1000;
+//                int minutes = (int) (millSecondsLeft / (1000 * 60));
+//                millSecondsLeft -= minutes * 60 * 1000;
+//                int seconds = (int) (millSecondsLeft / (1000));
+//
+//                tvDays.setText(days + "");
+//                tvHours.setText(hours + "");
+//                tvMins.setText(minutes + "");
+//                tvSecs.setText(seconds + "");
+//            }
+//
+//            public void onFinish(){
+//
+//            }
+//        }.start();
+//    }
+//
+//    private void findNextSession(Cursor details){
+//        Calendar current = Calendar.getInstance();
+//        Calendar race = Calendar.getInstance();
+//
+//        details.moveToFirst();
+//
+//        do{
+//            race.setTimeInMillis(details.getInt(COL_RACE) * 1000L);
+//            if(current.compareTo(race) < 0){
+//                nextRaceCountry = details.getString(COL_COUNTRY);
+//
+//                race.setTimeInMillis(details.getInt(COL_FP1) * 1000L);
+//                if(current.compareTo(race) < 0){
+//                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//                    nextSession = "FP1";
+//                    return;
+//                }
+//
+//                race.setTimeInMillis(details.getInt(COL_FP2) * 1000L);
+//                if(current.compareTo(race) < 0){
+//                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//                    nextSession = "FP2";
+//                    return;
+//                }
+//
+//                race.setTimeInMillis(details.getInt(COL_FP3) * 1000L);
+//                if(current.compareTo(race) < 0){
+//                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//                    nextSession = "FP3";
+//                    return;
+//                }
+//
+//                race.setTimeInMillis(details.getInt(COL_QUALY) * 1000L);
+//                if(current.compareTo(race) < 0){
+//                    timeToNextRace = (int)(race.getTimeInMillis() - current.getTimeInMillis());
+//                    nextSession = "Qualifying";
+//                    return;
+//                }
+//
+//                race.setTimeInMillis(details.getInt(COL_RACE) * 1000L);
+//                timeToNextRace = (int) (race.getTimeInMillis() - current.getTimeInMillis());
+//                nextSession = "Race";
+//                return;
+//            }
+//
+//
+//        }while(details.moveToNext());
+//    }
 
     private void createSchedule(){
         ContentValues[] scheduleValues = new ContentValues[21];

@@ -21,13 +21,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:textStyle="bold"
-        android:text="Country Name"
         android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/dates"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dates Go Here"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
